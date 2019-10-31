@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">	<!-- 响应操作 -->
+	<meta name = "Generator" content = "Sublime Text">		<!-- 编译器 -->
+	<meta name = "Author" content = "Mr.zhang">		<!-- 作者 -->
+	<meta name = "Keywords" content = "响应式">		<!-- 关键字，也就是浏览器检索的关键字 -->
+	<meta name = "Description" content = "响应式练习">		<!-- 对网页的描述，也就是我们在浏览器里面得到网页检索后我们所看到的每个网页的描述 -->
+	<title>响应式布局</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		@font-face {
+		  font-family: 'icomoon';
+		  src:  url('fonts/icomoon.eot?9pwg0y');
+		  src:  url('fonts/icomoon.eot?9pwg0y#iefix') format('embedded-opentype'),
+		    url('fonts/icomoon.ttf?9pwg0y') format('truetype'),
+		    url('fonts/icomoon.woff?9pwg0y') format('woff'),
+		    url('fonts/icomoon.svg?9pwg0y#icomoon') format('svg');
+		  font-weight: normal;
+		  font-style: normal;
+		  font-display: block;
+		}
+		.clearfix:after {	/*行内属性*/
+			content: "";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;/*隐藏content的内容*/
+		}
+		html{
+			font-size: 50px;
+		}
+		body{	/*整体背景颜色*/
+			background-color: #ddd;
+		}
+		ul,li{		/*将列表的那个小圆点取消*/
+			list-style: none;
+		}
+		.wrap {
+			width: 90%;
+			padding: 0.5rem;
+			margin: 0 auto;
+			background-color: #ddd;
+		}
+		.wrap li{
+			float: left;
+			width: 32%;
+			height: 6rem;
+			margin-top: 0.2rem;
+			margin-left: 0.2rem;
+			font-family: 'icomoon';
+			font-size: 4rem;
+			text-align: center;
+			line-height: 6rem;
+			color: #333;
+			background-color: #ddd;
+		}
+		.icon-chrome:before {
+		  content: "\ead9";
+		}
+		.wrap li:nth-child(1) span:after{
+			content: "\ead9";
+		}
+		.wrap li:nth-child(2) span:after{
+			content: "\eada";
+		}
+		.wrap li:nth-child(3) span:after{
+			content: "\eadb";
+		}
+		.wrap li:nth-child(4) span:after{
+			content: "\eadd";
+		}
+		.wrap li:nth-child(5) span:after{
+			content: "\eade";
+		}
+		.wrap li:nth-child(6) span:after{
+			content: "\eae4";
+		}
+
+		li:hover {
+			text-shadow: 0.2rem 0.2rem 0.2rem #000;	/*字体的阴影*/
+			box-shadow: 0rem 0rem 0.2rem #000 ;		/*盒子的阴影 ，默认外阴影，在最后加上inset就是内阴影了*/
+			color: #ff0;
+			background-color: #fff;
+		}
+		@media only screen and (max-width: 1080px){
+			.wrap li{
+				float: left;
+				width: 48%;
+				height: 6rem;
+				margin-top: 0.2rem;
+				margin-left: 0.2rem;
+				font-family: 'icomoon';
+				font-size: 4rem;
+				text-align: center;
+				line-height: 6rem;
+				color: #333;
+				background-color: #ddd;
+			}
+		}
+		@media only screen and (max-width: 650px){
+			.wrap li{
+				float: left;
+				width: 90%;
+				height: 6rem;
+				margin-top: 0.2rem;
+				margin-left: 0.2rem;
+				font-family: 'icomoon';
+				font-size: 4rem;
+				text-align: center;
+				line-height: 6rem;
+				color: #333;
+				background-color: #ddd;
+			}
+		}
+
+	</style>
+</head>
+<body>		<!-- 可视化区域 -->
+	<div class="wrap clearfix">
+		<ul>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+		</ul>
+	</div>
+</body>
+</html>
