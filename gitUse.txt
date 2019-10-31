@@ -1,0 +1,128 @@
+# git的基础操作
+
+GitHub与git的关系
+    GitHub是一个开源或者私有项目的托管平台。
+    git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。git主要基于linux来操作。（因为这最初的目的就是管理Linux内核）
+    GitHub只支持git作为唯一的版本库格式进行托管。
+
+GitHub的使用主要分为项目的创建以及pull、clone
+
+    创建以及其他的简单操作在一些教程里面都有，非常简单，此处不做介绍。
+    
+git的操作
+
+进行git操作之前你需要下载git，在官方选择适合你pc的版本。
+
+    官方网址：https://git-scm.com/
+    
+    
+git可以干什么
+    git可以将GitHub里面的项目clone到本地，在本地做出修改后push至GitHub。
+    直接也可以使用GitHub直接上传项目，但GitHub上传时会限制整个文件的大小，所以git还是非常有必要的！！
+
+git的主要分为两块：
+
+    Git GUI Here
+    //这是一个可视化的操作窗口
+    
+    Git Bash Here
+    //这是命令窗口（跟Linux命令窗口差不多）
+    
+    //我更喜欢bash。
+    
+git命令窗口操作。
+设置用户名：
+
+    git config --global user.name '用户名'
+    
+    //这个用户名与GitHub相同
+	
+设置邮箱：
+    
+    git config --global user.email '邮箱'
+	
+	//这个邮箱也就是你注册GitHub用到的邮箱
+
+查看账户信息：
+    
+    git config --list
+    
+    //这样就能看到设置的信息
+    
+创建文件夹：
+
+    mkdir 文件名
+
+
+看自己在哪个目录：
+
+    pwd
+
+在文件内初始化git(创建git仓库)：
+    
+    git init
+
+创建一个文件：
+
+    touch 文件名
+
+删除文件或文件夹：
+    
+    rm 文件名
+    
+
+查文件状态：
+
+    git status
+
+将文件提交到暂存区域：
+
+    git add 文件名
+
+把暂存区文件提交到本地仓库：
+
+    git commit -m '文件描述'
+    
+    //描述就是你对这个文件此次操作的简介，使得其他人了解你的用意。
+
+修改仓库文件
+	
+	进入文件并修改（保存修改：先Esc 然后":wq"）：  
+	    vi 文件名
+	
+	查看文件：
+	    cat 文件名
+	
+	确认修改后同步到仓库：
+	
+    	修改后先把文件放到暂存区域：   
+    	    git add 文件名		
+    	
+    	从暂存区域提交到本地仓库：
+    		git commit -m '文件描述'
+	
+删除仓库文件
+
+	先删除文件：rm -rf 文件名
+	
+	再传递信息删除库：
+	    先到暂存区 
+	        git rm 文件名
+	        
+		递交到库：
+		    git commit -m '描述'
+		    
+		  
+
+提交到git远程仓库
+    
+    克隆：（从GitHub把别人或者自己之前传递的内容拿到本地，自己进行删改）
+        git clone 仓库地址
+		
+		地址从github获取
+	
+	提交到远程git仓库：
+	    
+	    git push
+	    
+	    把本地库的内容push到GitHub。
