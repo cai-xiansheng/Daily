@@ -3,17 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">	<!-- 响应操作 -->
+	<!-- device-width:设备宽度，intial-scale:页面首次被显示是可视区域的缩放级别，取值1.0则页面按实际尺寸显示，无任何缩放
+	viewport:视窗 -->
 	<meta name = "Generator" content = "Sublime Text">		<!-- 编译器 -->
 	<meta name = "Author" content = "Mr.zhang">		<!-- 作者 -->
 	<meta name = "Keywords" content = "响应式">		<!-- 关键字，也就是浏览器检索的关键字 -->
 	<meta name = "Description" content = "响应式练习">		<!-- 对网页的描述，也就是我们在浏览器里面得到网页检索后我们所看到的每个网页的描述 -->
 	<title>响应式布局</title>
 	<style type="text/css">
-		* {
+		* {   /*这样虽然可以用，但是会增加浏览器的运算压力，哪些元素用到直接给这些元素定义这个性质就OK，例如：
+			body,div,h1{
+				margin :0;
+				padding :0;
+				}*/
 			margin: 0;
 			padding: 0;
 		}
-		@font-face {
+		@font-face {				/*这儿定义了一个字体属性，也就是在icomoon.io下载的。直接拿取的属性*/
 		  font-family: 'icomoon';
 		  src:  url('fonts/icomoon.eot?9pwg0y');
 		  src:  url('fonts/icomoon.eot?9pwg0y#iefix') format('embedded-opentype'),
@@ -24,47 +30,47 @@
 		  font-style: normal;
 		  font-display: block;
 		}
-		.clearfix:after {	/*行内属性*/
+		.clearfix:after {			/*行内属性*/
 			content: "";
-			display: block;
-			height: 0;
-			clear: both;
-			visibility: hidden;/*隐藏content的内容*/
+			display: block;			/*将伪标签after变为块级标签*/
+			height: 0;				
+			clear: both;			/*div的左侧和右侧均不允许出现浮动元素*/
+			visibility: hidden;		/*使after元素不可见，也就是说不展示在别人面前*/
 		}
 		html{
-			font-size: 50px;
+			font-size: 50px;		/*类似于在整个html中定义了：1rem=50px,后面直接使用rem就可以了，虽然现在不知道这样的好处。*/
 		}
-		body{	/*整体背景颜色*/
+		body{		/*整体背景颜色*/
 			background-color: #ddd;
 		}
-		ul,li{		/*将列表的那个小圆点取消*/
+		ul,li{		/*将列表的那个小圆点取消，也就是列表属性*/
 			list-style: none;
 		}
-		.wrap {
+		.wrap {							/*定义了div的属性，*/
 			width: 90%;
-			padding: 0.5rem;
-			margin: 0 auto;
+			padding: 0.5rem;  			/*内边界*/
+			margin: 0 auto;				/*外边界为0，但是剧中*/
 			background-color: #ddd;
 		}
-		.wrap li{
-			float: left;
-			width: 32%;
-			height: 6rem;
-			margin-top: 0.2rem;
-			margin-left: 0.2rem;
-			font-family: 'icomoon';
-			font-size: 4rem;
-			text-align: center;
-			line-height: 6rem;
-			color: #333;
+		.wrap li{						/*定义了div中li元素的属性*/
+			float: left;				/*有飘*/
+			width: 32%;					/*每个li的所占屏幕宽度的大小*/
+			height: 6rem;				/*定义了高度，即height=300px;*/
+			margin-top: 0.2rem;			/*外边距*/
+			margin-left: 0.2rem;		/*外边距*/
+			font-family: 'icomoon';		/*字体，也就是我们所展示的图标，其实这些图标就是一个个字体*/
+			font-size: 4rem;			/*字体的大小*/
+			text-align: center;			/*文本左右剧中*/
+			line-height: 6rem;			/*文本上下剧中*/
+			color: #333;				/*字体颜色*/
 			background-color: #ddd;
 		}
-		.icon-chrome:before {
-		  content: "\ead9";
-		}
+				/*:nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。
+				content （css）属性与 :before 及 :after 伪元素配合使用，来插入生成内容。
+				*/
 		.wrap li:nth-child(1) span:after{
 			content: "\ead9";
-		}
+		}			/*字的链接地址*/
 		.wrap li:nth-child(2) span:after{
 			content: "\eada";
 		}
@@ -81,16 +87,16 @@
 			content: "\eae4";
 		}
 
-		li:hover {
+		li:hover {									/*当鼠标以至li元素上时，给li元素添加以下性质*/
 			text-shadow: 0.2rem 0.2rem 0.2rem #000;	/*字体的阴影*/
 			box-shadow: 0rem 0rem 0.2rem #000 ;		/*盒子的阴影 ，默认外阴影，在最后加上inset就是内阴影了*/
 			color: #ff0;
 			background-color: #fff;
 		}
-		@media only screen and (max-width: 1080px){
+		@media only screen and (max-width: 1080px){		/*当屏幕宽度小于1080px时，.wrap li 使用下面的性质*/
 			.wrap li{
 				float: left;
-				width: 48%;
+				width: 48%;			/*改变li元素所占屏幕的比例*/
 				height: 6rem;
 				margin-top: 0.2rem;
 				margin-left: 0.2rem;
@@ -102,10 +108,10 @@
 				background-color: #ddd;
 			}
 		}
-		@media only screen and (max-width: 650px){
+		@media only screen and (max-width: 650px){		/*当屏幕宽度小于650px时，.wrap li 使用下面的性质*/
 			.wrap li{
 				float: left;
-				width: 90%;
+				width: 90%;			/*改变li元素所占屏幕的比例*/
 				height: 6rem;
 				margin-top: 0.2rem;
 				margin-left: 0.2rem;
