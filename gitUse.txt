@@ -82,6 +82,8 @@
 			git add file1 file2 file3(一次提交多个文件)
 			
 			git add 文件夹名（提交文件夹）
+			
+			git add *  提交全部文件到暂存区域
 
 		把暂存区文件提交到本地仓库：
 
