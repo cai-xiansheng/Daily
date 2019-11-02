@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>轮播图</title>
+	<style type="text/css">
+		*{							/*对全局定义的属性*/
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		body{						/*对body设置背景*/
+			background-color: #ccc;
+			background-size: cover;	/*背景铺满*/
+		}
+		#box{						
+			overflow: hidden;
+			width: 720px;
+			height: 412px;
+			margin: 100px auto;
+			position: relative;
+		}
+		#box .menu{
+			width: 400%;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+		#box .menu ul li{
+			float: left;
+		}
+		#box .pave-ul{
+			width: 120px;
+			height: 20px;
+			position: absolute;
+			bottom: 15px;
+			left: 300px;
+		}
+		#box .pave-ul ul{
+			position: absolute;
+		}
+		#box .pave-ul ul li{
+			background-color: #ccc;
+			border: 1px solider;
+			width: 20px;
+			height: 20px;
+			float: left;
+			margin: 0 5px;
+			cursor: pointer;			/*可以出现点击的现象*/
+			border-radius: 50%;
+		}
+		#box .pave-ul ul li:hover{		/*鼠标落在li上面时做出下面的改变*/
+			background-color: #888;
+			opacity: 1;					/*透明度*/
+		}
+		#box .pave-ul ul li.act{
+			background-color: #888;
+			opacity: 1;					/*透明度*/
+		}	
+	</style>
+</head>
+<body>
+	<div id="box">
+		<!-- 大图 -->
+		<div class="menu">
+			<ul>
+				<li><img src="images/1.jpg"></li>
+				<li><img src="images/2.jpg"></li>
+				<li><img src="images/3.jpg"></li>
+				<li><img src="images/4.jpg"></li>
+			</ul>	
+		</div>
+		<!-- 小圆点 -->
+		<div class="pave-ul">
+			<ul>
+				<li class="act"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="jQuery-3.4.1.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			var _index=0,
+				window_width=720,
+				timer=null,
+				images_count=4;
+			function nextPlay(){
+				if(_index>images_count-1){
+					_index=0;
+					$("#box .menu").stop().animate({left:-window_width*_index},500);
+				}else{
+					$("#box .menu").stop().animate({left:-window_width*_index},500);
+				}			
+				if(_index>images_count-1){
+					_index=0;
+					$("#box .pave-ul ul li").eq(0).addClass('act').siblings().removeClass('act');
+				}else{
+					$("#box .pave-ul ul li").eq(_index).addClass('act').siblings().removeClass('act');
+				}
+				_index++;
+			}	
+			timer=setInterval(nextPlay,2000);		/*定时器，每隔2000ms,执行一次nextPlay*/
+		})
+	</script>
+</body>
+</html>
