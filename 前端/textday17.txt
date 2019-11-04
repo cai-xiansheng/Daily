@@ -1,0 +1,174 @@
+jQuery
+
+	http://jquery.cuishifeng.cn/
+	
+
+
+
+
+
+
+
+	模块  《===》 类库
+	DOM/BOM/JavaScript
+	
+	一、查找元素
+		DOM
+			10个左右
+			
+		jQuery：
+			选择器:直接找到某类标签
+			1.	id
+				$('#id')
+				
+			2.	class
+				<div class='c1'></div>
+				$('.c1')
+				
+			3.	标签
+				<div class='c1'>
+					<a>f</a>
+					<a>f</a>
+				</div>
+				<div class='c1'>
+					<a>f</a>
+				</div>
+				<div class='c1'>
+					<div class='c2'> </div>
+				</div>
+				
+				
+			4.	组合
+				<div class='c1'>
+					<a>f</a>
+					<a>f</a>
+				</div>
+				<div class='c1'>
+					<a>f</a>
+				</div>
+				<div class='c1'>
+					<div class='c2'> </div>
+				</div>
+			
+				$('a')
+				$('.c2')
+				$('a,.c2,#i1')
+			
+			5.	层级
+					$('#i1 a')找子子孙孙
+					$('#i1>a')只找儿子
+					
+			6.	基本
+			
+				:first
+				:last
+				:eq()
+				
+			7.	属性选择器
+				$('[alex]')			具有Alex属性的所有标签
+				$('[alex="123"]')	alex属性等于123的标签
+				
+				
+			<input type='text'/>
+			<input type='text'/>
+			<input type='password'/>
+			
+			$("input[type='text']")		选择input的type='text'属性的元素
+			$(':text')		选择text属性的标签
+			
+			8.	
+			
+			筛选
+		
+		
+		PS:
+			1.x兼容性较好
+			2.x
+			3.x
+			
+			
+			转换：
+				jQuery对象[0]	=>DOM对象
+				Dom对象			=>（DOM对象）
+				
+			
+			
+		文本操作：
+				$(..).text()				# 获取文本内容
+				$(..).text(“<a>1</a>”)		# 文本内容
+				
+				$(..).html()				# 获取网页元素 
+				$(..).html("<a>1</a>")		# 设置网页元素
+		
+		
+				$.(..).val()				# 获取value的值
+				$.(..).val(..)				# 设置value的值
+				
+				
+		样式操作：
+			
+			addclass
+			removeclass
+			toggleclass()
+			
+		
+		属性操作：
+		
+			# 专门用于左自定义属性
+			
+			$(..).attr('n')			读取属性
+			$(..).attr('n ','v')	操作属性
+			$(..).removeAttr('n')
+			
+			
+			<input type="checxkbox" id='i1' >
+			
+			# 专门用于checkbox,radio
+			$(..).prop('checked',true)
+			
+			prop 里面写一个是读取那个的值
+				写两个是设置那个的值
+			
+			index:获取索引位置
+			
+			
+		文档处理：
+			
+			append
+			prepend
+			after
+			before
+			
+			remove
+			empty
+			
+			clone
+			
+			
+			
+			offset().left			指定标签子啊html中的坐标
+			offset().top			指定标签子啊html中的坐标
+			
+			position()				指定标签想对副标签（relative）标签的坐标
+			
+			<div style="relative">
+				<div>
+					<div id='i1' style="postion :absolute;height:80px;border:1px"></div>
+				</div>
+			</div>
+			
+			
+			$('il').height()			# 获取标签的宽度 纯高度
+			$('il').innerHeight()		# 获取边框 + 纯高度 + 
+			$('il').outerHeight()		# 获取边框 + 纯高度 +
+			$('il').outerHeight(ture)	# 获取边框 + 纯高度 +
+			# 纯高度，边框，内边距，外边距
+				
+				
+				
+	二、操作元素
+	
+	
+	
+==》实例：
+	模块对话框	

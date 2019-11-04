@@ -1,0 +1,119 @@
+1.	js正则
+
+
+	test		- 判断字符串是否符合规定的正则
+		
+		
+		
+		rep = /\d+/;(js正则)		^开始符		&结束符
+		rep = /^\d+&/;(js正则)
+		rep.test("ad12sgn")			d+：拿数字
+		# true
+		
+	
+	exec		- 获取匹配的数据
+		
+		rep = /\d+/;
+		rep.exec("ajkkjss12akf")
+		
+		#["12"]
+		
+		
+		JavaScript is more fun than Java or JavaBeans!
+		var pattern = /\bJava(\w*)\b/;
+		#	["JavaScript","Script"]
+		
+		
+		
+		JavaScript is more fun than Java or JavaBeans!
+		var pattern = /\bJava\w*\b/g;			//g:全局匹配，逐个拿取
+		#	["JavaScript"]
+			["Java"]
+			["JavaBeans"]
+			
+			
+			
+		JavaScript is more fun than Java or JavaBeans!
+		var pattern = /\bJava(\w*)\b/g;			//g:全局匹配，逐个拿取，分组后拿取其子元素
+		#	["JavaScript","Script"]
+			["Java",""]
+			["JavaBeans","Beans"]
+			
+		多行匹配：
+			默认就是多行匹配
+			^&
+			
+			
+		
+	
+	
+	
+	
+	
+	
+	rep = /\d+/;(js正则)
+	rep = /^\d+&/;(js正则)
+	
+	#	正则的定义
+	
+	
+	登陆注册验证
+	
+	表单验证
+	
+	==================== 验证 ====================
+	
+	前端验证JS
+		
+		各种验证
+		
+			$(':submit').click(function(){
+			
+				$(':text;:password').each(function(){
+				
+				……
+				return false;
+				
+				})
+			})
+	
+	后端验证python，Java
+	
+	
+2.	组件
+	==》前端
+	bootstrap
+		 - js
+		 - css
+	学习Bootstrap
+	
+	一、响应式
+		@madia
+		
+	二、图标、字体
+		@font-face
+	
+	三、基本使用
+	
+	==》后台管理
+	jQueryUI
+		 - js
+		 - css
+	
+	
+	EasyUI
+		 - js 
+		 - css
+		
+		
+		样式：http://www.jeasyui.com/demo/main/index.php
+		下载：http://www.jeasyui.com/download/v18.php
+	学习EasyUI	
+	
+	
+	
+	轮播图bxslider
+
+3、web框架
+	
+	
