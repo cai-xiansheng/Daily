@@ -1,0 +1,186 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1572953616797'); /* IE9 */
+  src: url('iconfont.eot?t=1572953616797#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+  url('iconfont.woff?t=1572953616797') format('woff'),
+  url('iconfont.ttf?t=1572953616797') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1572953616797#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+		body,div,ul,li,p{
+			margin: 0;
+			padding: 0;
+		}
+		ul,li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+			color: #3c3c3c;
+		}
+		.hide{
+			display: none;
+		}
+
+		.fl{
+			float: left;
+		}
+		.fr{
+			float: right;
+		}
+		.clearfix:after{
+		    content: '';
+		    display: block;
+		    clear: both;
+		}
+		.clear{
+			clear: both;
+			width: 1100px;
+			margin: 0 auto;
+		}
+		.m-right,.m-left{
+			width: 510px;
+			height: 555px;
+			padding: 40px 20px;
+		}
+		#pg-header .fl img{
+			display: inline-block;
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+		}
+		#pg-header .fr li{
+			display: inline-block;
+			float: left;
+		}
+		#pg-header{
+			margin: 0 auto;
+			width: 1100px;
+			height: 80px;
+			line-height: 80px;
+			background-color: #ecf0f1;
+		}
+		#pg-header .fr li{
+			margin-right: 10px;
+		}
+		.c4{
+			background-color: #ecf0f1;
+		}
+		#pg-conter1 .m-left img{
+			display: inline;
+			height: 200px;
+			width: 200px;
+			border-radius: 50%;
+			margin: 0 175px;
+		}
+
+		#pg-conter1 .m-left .l1{
+			margin: 0 auto;
+		}
+		#pg-conter1 .m-left p{
+			background-color: #ecf0f1;
+			text-align: center;
+			line-height: 35px;
+			border: 1px solid #f5f5f5;
+			border-radius: 95%;
+		}
+		#pg-conter1 .main span{
+			font-weight: 500;
+			font-size: 28px;
+		}
+		#pg-conter1 .m-right img{
+			display: inline-block;
+			height: 160px;
+			width: 160px;
+			margin: 5px 5px;
+		}
+		#pg-conter1 .m-right img:hover{
+			box-shadow: 0rem 0rem 0.2rem #000 ;	
+		}
+		#pg-conter1 .m-right .top{
+			margin-top: 50px;
+		}
+		#pg-conter1 .m-right .bottom{
+			margin-top: 60px;
+		}
+		#pg-conter2 .m-left img{
+			width: 175px;
+			height: 175px;
+			display: inline;
+			border-radius: 50%;
+			margin-top: 3px;
+		}
+		#pg-conter2 .m-right img{
+			width: 175px;
+			height: 175px;
+			display: inline;
+			border-radius: 15%;
+		}
+		#pg-conter2 .header{
+			font-weight: 500;
+			font-size: 28px;
+			display: inline-block;
+			height: 40px;
+			line-height: 40px;
+		}
+		#pg-foot{
+			height: 50px;
+			text-align: center;
+			background-color: #ecf0f1;
+			line-height: 50px;
+		}
+		@media only screen and (max-width: 600px){		/*当屏幕宽度小于1080px时，.wrap li 使用下面的性质*/
+			.clear{
+				clear: both;
+				width: 550px;
+				margin: 0 auto;
+			}
+			#pg-header{
+				margin: 0 auto;
+				width: 550px;
+				height: 80px;
+				line-height: 80px;
+				background-color: #ecf0f1;
+			}
+		}
+
+		.c1{
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            background-color: #3c3c3c;
+            opacity: 0.5;
+            z-index: 9;
+        } /*蒙层——不能操作底层内容*/
+		.imag{
+			display: inline-block;
+			width: 500px;
+			height: 500px;
+			top: 50px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+			margin: 0 auto;
+			z-index: 10;
+			position: fixed;
+		}
+		i{
+			display: inline-block;
+			font-style: normal;
+		}
+		.text{
+			float: none;
+			line-height: 25px;
+			vertical-align:middle;
+			margin-left: 2px;
+		}
