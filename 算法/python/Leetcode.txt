@@ -1,0 +1,49 @@
+1.从排序数组中删除重复项
+	·我的代码：
+		from typing import List
+		def ppo(nums:List[int]) -> List[int]:
+			lenth = len(nums)
+			if lenth == 0 or lenth == 1:
+				return lenth
+			i = 0
+			while i < lenth:
+				if nums[-1] == nums[0] and len(nums) != 1:
+					i += 1
+					del nums[0]
+					continue
+				now = nums[0]
+				del nums[0]
+				nums.append(now)
+				i += 1
+			outLenth = len(nums)
+			return outLenth
+	·我的思路：
+			刚开始没有考虑到列表中一个数或者两个相同数的问题，直到后面测试案例测出来，我才发现。
+		我想一个一个检测，因为题目中给出的测试输入是有规律的，我这个算法也就只能在这种环境下才能
+		运行。先测除数组的长度，用做 while循环的条件，然后先判断长度为0，1的数组，如果遇到这种情
+		况直接结束，返回测得的长度。如果不满足继续执行。主要的内容就是，先把第一个数拿出来，然后
+		把这个数添加到最后一位，再删除第一个数。以后每次，先判断第一个数是否和最后一个数相同，若
+		相同直接删除第一个数，结束本次循环；若不是，就把这个数还是存到最后一个，然后再删除第一个
+		。依次循环，直到while循环结束。
+	·大佬的代码：
+		def removeDuplicates(self, nums: List[int]) -> int:
+			if len(nums) == 1:
+				return 1
+			if not nums:
+				return 0
+			i = 0
+			j = 1
+			flag = nums[i]
+			while(i<len(nums)):
+				if nums[i] == flag:
+					i += 1
+				else:
+					flag = nums[i]
+					nums[j] = flag
+					j += 1
+					i += 1
+			return j
+	·我对大佬代码的理解：
+		先判断数组的长度是不是1或者0，如果这样就返回他们的长度。然后定义一个位置i，一个计数（初值给1），
+		然后把第一个数给flag，然后依次循环比较第i个数和flag是否相同，如果相同，就把给i += 1，若果不同就
+		把这个数给flag，然后给j += 1。直到循环结束。返回计数j。666
