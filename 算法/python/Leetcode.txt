@@ -47,3 +47,34 @@
 		先判断数组的长度是不是1或者0，如果这样就返回他们的长度。然后定义一个位置i，一个计数（初值给1），
 		然后把第一个数给flag，然后依次循环比较第i个数和flag是否相同，如果相同，就把给i += 1，若果不同就
 		把这个数给flag，然后给j += 1。直到循环结束。返回计数j。666
+		
+		
+2.买卖股票的最佳时机II
+	我的思路：
+		说实话，这个我虽然想了半天，但还是在实现的时候出现了障碍，总之还是逻辑上的问题。
+	看完大佬的思路，我的思路：
+		做什么事只关注眼前利益，从第一天开始（忽略第0天）。如果今天的利润减去昨天的利润为正，那么昨天就买入，
+		然后今天卖出（这样就防止亏本），并把利润差统计出来；到明天的时候再进行这样的判断，进行循环操作，直到
+		最后一天。并不需要给顶什么标志，再循环比较（我的思路就是这样！）。
+	我的代码：
+		from typing import List
+		def maxProfit(prices: List[int]) -> int:
+			i = 1
+			maxp = 0
+			while i < len(prices):
+				if prices[i-1]<prices[i]:
+					sum = prices[i] - prices[i - 1]
+					if sum > 0:
+						maxp = maxp + sum
+				i += 1
+			return maxp
+	大佬的代码：
+		def maxProfit(self, prices: List[int]) -> int:
+			profit = 0
+			for i in range(1, len(prices)):
+				if prices[i] > prices[i - 1]:
+					profit += (prices[i] - prices[i - 1])
+			return profit
+	我对大佬代码的理解：
+		还是从第一天开始的（忽略第0天），如果今天利润大于昨天的利润，就把利润差累加给总利润。真是简单！666
+		我真菜！！！
