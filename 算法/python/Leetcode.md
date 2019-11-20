@@ -1,0 +1,123 @@
+# 1.从排序数组中删除重复项
+#### 我的代码：
+```python
+		from typing import List
+		def ppo(nums:List[int]) -> List[int]:
+			lenth = len(nums)
+			if lenth == 0 or lenth == 1:
+				return lenth
+			i = 0
+			while i < lenth:
+				if nums[-1] == nums[0] and len(nums) != 1:
+					i += 1
+					del nums[0]
+					continue
+				now = nums[0]
+				del nums[0]
+				nums.append(now)
+				i += 1
+			outLenth = len(nums)
+			return outLenth
+```
+#### 我的思路：
+
+刚开始没有考虑到列表中一个数或者两个相同数的问题，直到后面测试案例测出来，我才发现。我想一个一个检测，因为题目中给出的测试输入是有规律的，我这个算法也就只能在这种环境下才能运行。先测除数组的长度，用做while循环的条件，然后先判断长度为0，1的数组，如果遇到这种情况直接结束，返回测得的长度。如果不满足继续执行。主要的内容就是，先把第一个数拿出来，然后把这个数添加到最后一位，再删除第一个数。以后每次，先判断第一个数是否和最后一个数相同，若相同直接删除第一个数，结束本次循环；若不是，就把这个数还是存到最后一个，然后再删除第一个。依次循环，直到while循环结束。
+#### 大佬的代码：
+
+```python
+		def removeDuplicates(self, nums: List[int]) -> int:
+			if len(nums) == 1:
+				return 1
+			if not nums:
+				return 0
+			i = 0
+			j = 1
+			flag = nums[i]
+			while(i<len(nums)):
+				if nums[i] == flag:
+					i += 1
+				else:
+					flag = nums[i]
+					nums[j] = flag
+					j += 1
+					i += 1
+			return j
+```
+#### 我对大佬代码的理解：
+先判断数组的长度是不是1或者0，如果这样就返回他们的长度。然后定义一个位置i，一个计数（初值给1），然后把第一个数给flag，然后依次循环比较第i个数和flag是否相同，如果相同，就把给i += 1，若果不同就把这个数给flag，然后给j +=1。直到循环结束。返回计数j。666
+		
+---
+
+# 2.买卖股票的最佳时机II
+#### 我的思路：
+说实话，这个我虽然想了半天，但还是在实现的时候出现了障碍，总之还是逻辑上的问题。
+#### 看完大佬的思路，我的思路：
+做什么事只关注眼前利益，从第一天开始（忽略第0天）。如果今天的利润减去昨天的利润为正，那么昨天就买入，然后今天卖出（这样就防止亏本），并把利润差统计出来；到明天的时候再进行这样的判断，进行循环操作，直到最后一天。并不需要给顶什么标志，再循环比较（我的思路就是这样！）。
+#### 我的代码：
+
+```python
+		from typing import List
+		def maxProfit(prices: List[int]) -> int:
+			i = 1
+			maxp = 0
+			while i < len(prices):
+				if prices[i-1]<prices[i]:
+					sum = prices[i] - prices[i - 1]
+					if sum > 0:
+						maxp = maxp + sum
+				i += 1
+			return maxp
+```
+#### 大佬的代码：
+
+```python
+		def maxProfit(self, prices: List[int]) -> int:
+			profit = 0
+			for i in range(1, len(prices)):
+				if prices[i] > prices[i - 1]:
+					profit += (prices[i] - prices[i - 1])
+			return profit
+```
+#### 我对大佬代码的理解：
+还是从第一天开始的（忽略第0天），如果今天利润大于昨天的利润，就把利润差累加给总利润。真是简单！666我真菜！！！
+
+---
+# 3.旋转数组
+#### 我的代码
+
+```python
+from typing import List
+def rotate(nums: List[int], k: int) -> None:
+    """
+    Do not return anything, modify nums in-place instead.
+    """
+    i = 0
+    while i<k:
+        nums.insert(0,nums.pop())
+        i += 1
+```
+#### 我的理解
+直接用进出列表来解决这个问题，移动次数用循环控制。哈哈，这么快就做出来了。但我看到我的运行时间时，我懵了：188ms，这应该是我的算法运行时间最长的了。看来操作进出队列，真是费时间。
+
+#### 大佬的代码
+```python
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        nums[:] = nums[len(nums) - k % len(nums):] + nums[:len(nums) - k % len(nums)]
+```
+#### 我对大佬代码的理解：
+太牛逼了，一行解决战斗！他直接将列表按照我们给的K值切断，然后重新组合，切断时利用取余，把多次循环按照列表长度以内的的长度处理（就是如果重复循环了，就按照最后一波的处理），然后把后面的添加到前边，前边的放到后边。nums是他利用的一个变量。后边的是我们之前传递过来的。
+
+需要注意的是：列表的索引是从0开始的。nums[:] = ···  这是克隆相同的列表。
+
+
+| 索引 | data |
+| ---- | ---- |
+| 0    | 1    |
+| 1    | 2    |
+| 2    | 3    |
+| 3    | 4    |
+| 4    | 5    |
+| 5    | 6    |
