@@ -121,3 +121,56 @@ def rotate(nums: List[int], k: int) -> None:
 | 3    | 4    |
 | 4    | 5    |
 | 5    | 6    |
+
+---
+
+# 4.存在重复
+
+#### 我的代码
+
+```python
+def containsDuplicate( nums: List[int]) -> bool:
+    i = 1
+    while i < len(nums):
+        if nums[i - 1] in nums[i:]:
+            return True
+        i += 1
+    return False
+```
+
+#### 我遇到的问题
+这个如果遇到大量数据，操作时间太长，少量数据可以使用。
+#### 我改的代码
+
+```python
+def containsDuplicate( nums: List[int]) -> bool:
+    if len(nums) <= 1:
+        return False
+    i = 1
+    nums.sort()
+    while i < len(nums):
+        if nums[i-1] == nums[i]:
+            return True
+        i += 1
+    return False
+```
+#### 我的理解
+这个问题怎么说呢，想解决这个问题很简单，但是在效率面前，代码的操作真的很有必要注意。
+刚开始我的想法是：直接进行出列表操作，然后在判断这个flag是不是还在列表里面，如果在true，反之false。但是这个存在的问题，首先进行了列表的删除操作，随后还得把每个元素跟剩余的列表进行对比操作，耗费时间太多。（我的CPU竟然会跑满！！）
+看完思路后：直接对列表进行sort()操作，然后直接左右对比。与之前我的相比，时间耗费大量下降。
+#### 大佬的代码
+
+```python
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        s = set(nums)
+        if len(s) == len(nums):
+            return False
+        else:
+            return True
+```
+#### 我对大佬代码的理解
+ ***set()*** 这个方法就是把一个列表直接进行排序（按照ASCLL排序），并且删除重复项，重复项只保留一个。
+
+ 操作：s = set(nums)    这就是将nums排序后放入s，
+
+ 他进行了set()，然后就直接对比s与nums的长度。显而易见，如果长度减小，就说明存在重复项。
