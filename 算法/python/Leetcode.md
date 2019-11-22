@@ -174,3 +174,54 @@ def containsDuplicate( nums: List[int]) -> bool:
  操作：s = set(nums)    这就是将nums排序后放入s，
 
  他进行了set()，然后就直接对比s与nums的长度。显而易见，如果长度减小，就说明存在重复项。
+
+---
+
+# 5.只出现一个数字
+#### 我的代码
+```python
+from typing import List
+def singleNumber(nums: List[int]) -> int:
+    i = 0
+    while i < len(nums):
+        flag = nums.pop(0)
+        if flag in nums:
+            nums.remove(flag)
+            continue
+        else:
+            return flag
+```
+#### 我的想法
+还是进行列表操作，但是这个操作太耗费时间，用了2000多ms。需要改善！
+#### 我更改后的
+```python
+from typing import List
+def singleNumber(nums: List[int]) -> int:
+    i = 0
+    nums.sort()
+    while i < len(nums):
+        flag = nums[i]
+        if flag in nums[i+1:]:
+            i += 2
+            continue
+        else:
+            return flag
+```
+#### 我的反思
+后面的这个运算时间600多ms，哈哈，还算是有提高。这个就只是对列表进行了排序操作，然后进行循环判断，如果成立++2。之前写的那个对列表进行了操作，但是太好费时间了，总之还是直接对比好，不要使劲操作列表！！！还有sort(),in都会进行大量操作，跟数据量是成正比的。
+#### 大佬的代码
+```python
+    def singleNumber(self, nums: List[int]) -> int:
+        size = len(nums)
+        ans = nums[0]
+        for i in range(1, size):
+            ans ^= nums[i]
+        return ans
+```
+#### 我对大佬代码的理解
+他这个就是利用^的特征，如果两个数相同就会是0，反之就是它们自己相加。题目中说到会有一个元素出现2次，还会有一个出现一次。所以说若出现两次就是0，出现一次的就是它本身，太牛皮了！这个只有线性时间复杂度。并且操作简单。
+
+a^=b 相当于：a=a^b；
+异或就是两个数的二进制形式，按位对比，相同取0，不同取1，然后相加赋值给a.
+
+range按位计数，range[1,5]，它只会产生[1,2,3,4]
