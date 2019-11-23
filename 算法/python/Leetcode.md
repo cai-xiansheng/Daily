@@ -225,3 +225,61 @@ a^=b 相当于：a=a^b；
 异或就是两个数的二进制形式，按位对比，相同取0，不同取1，然后相加赋值给a.
 
 range按位计数，range[1,5]，它只会产生[1,2,3,4]
+
+---
+# 6.两个数组的交集 II
+#### 我的代码
+```python
+from typing import List
+def intersect( nums1: List[int], nums2: List[int]) -> List[int]:
+    nums1.sort()
+    nums2.sort()
+    i = 0
+    j = 0
+    s = []
+    while i < len(nums1) and j < len(nums2):
+        if nums1[i] == nums2[j]:
+            s.append(nums1[i])
+            i += 1
+            j += 1
+        elif nums1[i] < nums2[j]:
+            i += 1
+        else:
+            j += 1
+    return s
+```
+#### 我遇到的问题
+我之前改了好长时间，都是因为指针移动的问题，要么移动距离小了，要么移动距离大了，这都是问题。还有很容易就超出范围了。
+#### 我的理解
+在写了一个小时没有效果后，在网上看了看，写了出来。
+
+这个主要就是对指针的移动做出了很好的限制。先给列表进行sort()排序，然后进行指针的跳转。指针变化的过程如下：（1）.首先列表操作的条件就是不能超过任何一个列表的长度。（2）.然后就是判断，如果两个一样大，就把这个值加给另外一个列表，反之将小的值的列表的指针加一，再次循环。
+
+很简单的一个方法，主要得从全局考虑，不要死抓者一个点不放过，如果有问题，并且长时间都解决不了，就直接从题目入手，用其他方法解决这个问题。
+#### 大佬的算法
+```python
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        if len(nums1) > len(nums2):
+            return self.intersect(nums2, nums1)
+        freq_dict = dict()
+        result = []
+        for i in nums1:
+            if i in freq_dict:
+                freq_dict[i] = freq_dict[i] + 1
+            else:
+                freq_dict[i] = 1
+                
+        for i in nums2:
+            if i in freq_dict:
+                result.append(i)
+                freq_dict[i] -= 1
+                if freq_dict[i] == 0:
+                    freq_dict.pop(i)
+        
+        return result
+```
+#### 我对大佬代码的理解
+首先进行判断，将长度小的列表放到前边，这样可以减小循环次数。
+然后后面我看不懂了！！！
+
+其实我感觉我看完思路后写出的那个还是想到好的，毕竟效率高的代码，我看不懂这也是个问题。
