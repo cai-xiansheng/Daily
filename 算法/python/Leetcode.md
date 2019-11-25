@@ -335,3 +335,52 @@ def plusOne(digits: List[int]) -> List[int]:
 
 ---
 
+# 8.移动零
+#### 我的代码
+```python
+from typing import List
+def moveZeroes( nums: List[int]) -> None:
+    """
+    Do not return anything, modify nums in-place instead.
+    """
+    j = 0
+    i = 0
+    while i < len(nums):
+        if nums[i] == 0:
+            nums.remove(0)
+            j += 1
+        else:
+            i += 1
+    while j > 0:
+        nums.append(0)
+        j -= 1
+```
+#### 我的理解
+统计列表中0的个数，同时删除这个0。然后再给列表的尾部添加相同个数的0。在这个过程中，我遇到了一个问题，之前理解的remove()是将列表元素中的某个元素全部删除，然而是将某个元素第一次出现的删除。并不做全部处理。
+
+>remove()删除列表中一个元素的第一个，并不能删除列表中那个元素的所有。下面一个例子。
+```python
+a = [1,0,1,0]
+a.remove(0)
+a = [1,1,0]
+```
+#### 大佬的代码
+```python
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        loc = 0
+        for num in nums:
+            if num != 0:
+                nums[loc] = num
+                loc += 1
+        while loc < len(nums):
+            nums[loc] = 0
+            loc += 1
+```
+#### 我对大佬代码的理解
+遍历列表中的元素，设置一个索引元素，如果这个元素不为0，那么就将这个元素给列表的0号位置，以此类推，把列表中所有的0就排除了。随后，判断列表的索引是否达到列表的长度，如果没有达到，就给最后几个元素，赋值0。这样操作不用重复删除，分配空间了，仅仅是操作列表中的元素，所以提高了效率。
+
+---
+
