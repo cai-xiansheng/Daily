@@ -384,3 +384,50 @@ a = [1,1,0]
 
 ---
 
+# 9.两数之和
+#### 我的代码
+```python
+from typing import List
+def twoSum( nums: List[int], target: int) -> List[int]:
+    arr = []
+    for i in range(0,len(nums)):
+        for j in range(i + 1,len(nums)):
+            if i != j:
+                if nums[i] + nums[j] == target:
+                    arr.append(i)
+                    arr.append(j)
+                    return arr
+    return arr
+```
+#### 我的理解
+刚理解题目的时候理解错题意了，题目中要求是两个元素不同（那就是不在同一个位置上。），我却理解成了，元素的值不能相等。
+
+不仅如此，这次还是出现了我最不想见到的“大数据”，数据太多了，简单方法处理起来太耗费时间了，我也是醉了。最终终于以6000多ms的速度通过了。但还是太耗费时间了。
+#### 大佬的代码
+```python
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dic = {}
+        for index, num in enumerate(nums):
+            //遍历nums元素的索引和元素
+            find = target - num
+            //将target减去num的数赋给find
+            if find in dic:
+            //判断find的值是不是在字典中。
+                return [dic[find], index]
+                //如果在，就将已经存在的元素索引和刚循环到的索引返回，但前提条件是必须字典中必须存在find（find就是字典中的keys）
+            else:
+                dic[num] = index
+                //这个就是不成立的条件下往字典中存数据的操作。
+```
+#### 我对大佬代码的理解
+>enumerate(列表)    这个方法它会给我们逐个返回中的【元素的索引】和【元素】
+
+>enumerate 这个方法经常被用在for循环中，我们将拿到的【元素的索引】和【元素】进行处理。
+```python
+names = ['al','op','ko']
+for index, data in enumerate(names):
+```
+上面的方法就是利用enumerate遍历列表中的【元素的索引】和【元素】，然后判断【target - data】的差值是不是在字典中，如果不在字典中，就将keys-values对应为【元素】-【元素的索引】存入字典中。如果在字典中，就将那个差值对应的索引和遍历到的元素的索引当成一个列表return返回。
+
+---
+
