@@ -431,3 +431,32 @@ for index, data in enumerate(names):
 
 ---
 
+# 10.反转字符串
+#### 我的代码
+```python
+from typing import List
+def reverseString( s: List[str]) :
+    i = 0
+    lenth =len(s)
+    for sa in s:
+        if  i < lenth/2:
+            if s[i] != s[lenth-1-i] :
+                s[i] = s[lenth-1-i]
+                s[lenth-1-i] = sa
+        else:
+            break
+        i += 1
+```
+#### 我的理解
+直接将前后元素互换，并且同时控制循环次数（循环的时候我们只需要循环列表长度的一般）。这样就可以解决此问题！
+#### 大佬的代码
+```python
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        s[0::]=s[::-1]
+```
+#### 我对大佬代码的理解
+收下鄙人的膝盖。但是我还是没看懂！它应该是将列表直接反向处理。然后又送给新的列表。
+
