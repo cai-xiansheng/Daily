@@ -430,7 +430,6 @@ for index, data in enumerate(names):
 上面的方法就是利用enumerate遍历列表中的【元素的索引】和【元素】，然后判断【target - data】的差值是不是在字典中，如果不在字典中，就将keys-values对应为【元素】-【元素的索引】存入字典中。如果在字典中，就将那个差值对应的索引和遍历到的元素的索引当成一个列表return返回。
 
 ---
-
 # 10.反转字符串
 #### 我的代码
 ```python
@@ -459,4 +458,60 @@ def reverseString( s: List[str]) :
 ```
 #### 我对大佬代码的理解
 收下鄙人的膝盖。但是我还是没看懂！它应该是将列表直接反向处理。然后又送给新的列表。
+
+---
+# 11.整数反转
+#### 我的代码
+```python
+def reverse( x: int) -> int:
+    result = 0
+    flag = 0
+    if x < 0:
+        x = -x
+        flag = -1
+    while (x):
+        num = x % 10
+        result = result * 10 + num
+        x = x // 10
+    if result > 2 ** 31 - 1 or result < -2 ** 31:
+        return 0
+    if flag == -1:
+        result = -result
+    return result
+print(reverse(-159))
+```
+#### 我的理解
+数的反转就是把它每一位拿出来当作另外一个新数的第一位，以此类推。但是题目中又提到了数的长度，所以我们必须限制反转之后数的长度（大小），就是这么简单。有很多细节需要考虑：常用处理数的方法。
+```python
+while (x)
+	a = x % 10		#从最低位输出
+	x = x // 10		#从删除数的最低位
+```
+#### 大佬的代码
+```python
+    def reverse(self, x: int) -> int:
+        if x<-2**31 or x>2**31-1:
+            return 0
+        else:
+            if x==0:
+                return 0
+            if x<0:
+                y=str(x)[::-1]
+                z=y[:-1]
+                w=-int(z)
+            if x>0:
+                y=str(x)[::-1]
+                w=int(y)
+        if w<-2**31 or w>2**31-1:
+            return 0
+        else:
+            return w
+```
+#### 我对大佬代码的理解
+在数字反转问题中，可以将数字换成str(字符串来处理），字符串简单的就是可以直接通过反转字符串进行操作，操作完成之后直接进行把字符串转化成数字的操作就可以了。
+```python
+y = str(x)[::-1]		# 对数字进行字符串化处理，然后再进行反转处理。
+w = int (y)				# 对字符串进行数字化处理。
+# 那个数字是负数，那么它直接进行了反转处理之后，那么它就在它的最后一位出现了-，所以我们就需要把这个负号拿掉，在开头重新添加一个负号。
+```
 
