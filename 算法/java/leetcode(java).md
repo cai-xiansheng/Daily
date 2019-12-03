@@ -163,5 +163,148 @@ class Solution {
         }
 ```
 
+---
 
+# 3.验证回文字符串
+
+#### 题目
+
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+
+**说明：**本题中，我们将空字符串定义为有效的回文串。
+
+**示例 1:**
+
+```
+输入: "A man, a plan, a canal: Panama"
+输出: true
+```
+
+**示例 2:**
+
+```
+输入: "race a car"
+输出: false
+```
+
+#### 我的代码
+
+写了半天，最后还是错误满天飞，我跪了！
+
+```java
+    public static boolean isPalindrome(String s) {
+        if (s.length() == 0)
+            return true;
+        s = s.toLowerCase();
+        int last = s.length()-1;
+        int pre = 0;
+        int i;
+        for (i = 0;i < s.length() / 2;i ++) {
+            char flag1 = '*';
+            while((flag1 == '*') && (pre < (last-1))) {
+                if((s.charAt(pre) >= 'a' && s.charAt(pre) <= 'z') || (s.charAt(pre) >= '0' && s.charAt(pre) <= '9')) {
+                    flag1 = s.charAt(pre);
+                    pre++;
+                }
+                else
+                    pre++;
+            }
+            char flag2 = '*';
+            while((flag2 == '*') && (last > 0)) {
+                if((s.charAt(last) >= 'a' && s.charAt(last) <= 'z') || (s.charAt(last) >= '0' && s.charAt(last) <= '9') ) {
+                    flag2 = s.charAt(last);
+                    last--;
+                }
+                else
+                    last--;
+            }
+            if (flag1 != flag2) {
+                return false;
+            }
+        }
+        if (i == s.length()/2)
+            return true;
+        return false;
+    }
+```
+
+#### 我的理解
+
+设置两个指针，一个从字符串头向后，另一个从字符串尾向前。排除非字母数字，然后对比，如果有一个不相等，那么就false。但是问题就出到这儿了，变态输入，如果全部不是字母或者数字。这样就会出现问题。啊！我太难了！！！
+
+#### 我改的代码
+
+```java
+    public static boolean isPalindrome(String s) {
+        if (s.length() == 0)
+            return true;
+        s = s.toLowerCase();
+        StringBuilder t = new StringBuilder();
+        for (int i = 0;i < s.length();i ++){
+            if ((s.charAt(i) >= 'a' && s.charAt(i) <= 'z') ||(s.charAt(i) >= '0' && s.charAt(i) <= '9'))
+                t.append(s.charAt(i));
+        }
+        if (t.length() == 0)
+            return true;
+        int pre = 0;
+        int end = t.length() - 1;
+        while (pre < end) {
+            if (t.charAt(pre) == t.charAt(end)) {
+                pre++;
+                end--;
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+```
+
+#### 我的理解
+
+它首先利用StringBuilder的方法，直接把有效字符全部放入一个新的字符串中。然后再逐个比较。这个方法，真是好！
+
+#### 大佬的代码
+
+```java
+public  boolean isPalindrome(String s) {
+        if (s.length() <= 1)
+            return true;
+        int left = 0;
+        int right = s.length() - 1;
+        char[] chars = s.toCharArray();
+        while (left < right) {
+            //调整大写 A-Z 65-90 || a-z 97-122
+            if ((int) chars[left] >= 65 && (int) chars[left] <= 90)
+                chars[left] = (char) ((int) chars[left] + 32);
+            if ((int) chars[right] >= 65 && (int) chars[right] <=90)
+                chars[right] = (char) ((int) chars[right] + 32);
+            //验证目标字符为数字或字母
+            boolean flag1 = (chars[left] >= '0' && chars[left] <= '9') || (chars[left] >= 'a' && chars[left] <= 'z');
+            boolean flag2 = (chars[right] >= '0' && chars[right] <= '9') || (chars[right] >= 'a' && chars[right] <= 'z');
+            //正式比较
+            if (flag1 && flag2 && chars[left] != chars[right]) {
+                return false;
+            }else if (!flag1){
+                left++;
+            }else if (!flag2){
+                right--;
+            }else {
+                left++;
+                right--;
+            }
+        }
+        return true;
+    }
+```
+
+#### 我对大佬代码的理解
+
+get到一个知识点：把字符串转化成字符数组。
+
+```java
+char[] chars = s.toCharArray();
+```
+
+然后再进行操作。虽然时间用的短，但是代码有很多赘余。我觉得并不好。
 
