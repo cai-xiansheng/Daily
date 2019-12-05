@@ -375,7 +375,111 @@ char[] chars = s.toCharArray();
 #### 我的代码
 
 ```java
-
+	public static int myAtoi(String str) {
+    	int n = str.length();
+    	//字符串的长度
+    	int i = 0;
+    	//用于索引字符串的指针
+    	while(i < n && str.charAt(i) == ' ') {
+    		i ++;
+    	}
+    	//跳过空格
+    	if(i == n||!((str.charAt(i) >= '0' && str.charAt(i) <= '9' )|| str.charAt(i) == '+' || str.charAt(i) == '-'))
+    		return 0;
+    	//判断是不是已经到达了字符串的顶端，判断当前索引位置的元素是不是【0，9】，‘+’，‘-’。
+    	StringBuilder s = new StringBuilder();
+    	//构造一个StringBuilder 的字符串。（StringBuilder中有很方便的字符串操作方法）。
+    	if(str.charAt(i) == '-') {
+    		s.append('-');
+    		i ++;
+    		//判断当前索引位置的元素是不是‘-’，如果是直接将其append进新建的字符串中。
+    	}else if (str.charAt(i) == '+') {
+    		i ++;
+    		//判断当前索引位置的元素是不是‘+’，如果是就进入下一个索引的位置（正数我们没有必要再在前边加一个‘+’）。
+    	}
+    	if(i == n||!(str.charAt(i) >= '0' && str.charAt(i) <= '9' ))
+    		return 0;
+    	//再判断一次，如果超过字符串长度，那么直接结束。如果不是【0，9】那么直接返回0.
+    	while(i < n && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+    		s.append(str.charAt(i));
+    		i ++;
+    	}
+    	System.out.println(s);
+    	try {
+    		return Integer.valueOf(s.toString());
+    	}catch(Exception e){
+    		if(s.substring(0,1).equals("-")) {
+    			return Integer.MIN_VALUE;
+    		}else {
+    			return Integer.MAX_VALUE;
+    		}
+    	}
+    	//try……catch……，判断异常，抛异常时直接进入。
+    	//valueOf()返回保存指定的 String 的值的 Integer对象。(java的number方法)
+    	//equals,对比字符，必须用""。不然，不然就会跟我一样，花好长时间。
+    	//substring(beging,ending)，获取字符串的【beging，ending）的
+    }
 ```
 
 #### 我的理解
+
+```
+这个题就是需要考虑很多的条件，
+1.判断是不是空格开头，
+2.判断第一个非空是不是“+”或者“-”
+3.判断第一个是不是非数字
+4.判断得到的数是否大于INT_MAX，或者小于INT_MIN
+5.判断第一个非空不是正负号，不是数字时的处理。
+
+valueOf(String s):返回保存指定的 String 的值的 Integer 对象。(java的number方法)
+Integer.toString(): 返回表示 Integer 值的 String 对象。
+	string.toString();
+```
+
+这个程序真的很有趣，它完全时一种全新的。我们一般都会想着在一个循环中解决问题，但是这个就是利用一个变量来把这个问题给解决了。详细注释在程序中！
+
+#### 大佬的代码
+
+```java
+	public int myAtoi(String str) {
+		if (str.isEmpty())
+			return 0;
+		char[] mychar = str.toCharArray();
+		long ans = 0;
+		int index = 0, flag = 1, n = str.length();
+		//排除字符串开头的空格元素
+		while (index < n && mychar[index] == ' ') {
+			index++;
+		}
+		//排除空格后判断首字符是+还是-还是都不是
+		if (index < n && mychar[index] == '+') {
+			index++;
+		} else if (index < n && mychar[index] == '-') {
+			index++;
+			flag = -1;
+		}
+		//重点：只管是数字的时候，其余取0
+		while (index < n && (mychar[index] >= '0' && mychar[index] <= '9')) {
+			if (ans != (int) ans) {//超出int范围
+				return (flag == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;//提前结束
+			}
+			ans = ans * 10 + mychar[index++] - '0';
+		}
+
+		if (ans != (int) ans) {
+			return (flag == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+		}
+
+		return (int) (ans * flag);
+
+	}
+```
+
+#### 我对大佬代码的理解
+
+首先判断字符串是不是为空，如果是空，返回0。然后把字符串转化成字符数组。判断非空（拿到非空的位置）。再判断这个元素是不是“+”或者“-”，按找其对应的方法处理。然后判断后边的元素是不是在【0，9】，再判断结果有没有超出int范围，没超过则处理数据。最终再判断一次有没有超出【0，9】，再判断结果有没有超出int范围。最终输出得到的值。过程都比较复杂。
+
+通过这个算法，get到了这种循环处理方式。
+
+---
+
