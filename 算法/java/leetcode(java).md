@@ -483,3 +483,61 @@ Integer.toString(): 返回表示 Integer 值的 String 对象。
 
 ---
 
+# 9.回文数
+
+#### 我的代码
+
+```java
+	public static boolean isPalindrome(int x) {
+		if(x < 0)
+			return false;
+		String s = (x + "");
+		int pre = 0;
+		int end = s.length() - 1;
+		int i = 0;
+		while(i < s.length()/2) {
+			if(s.charAt(pre) == s.charAt(end)) {
+				pre ++;
+				end --;
+			}else {
+				return false;
+			}
+			i ++;
+		}
+		return true;
+	}
+```
+
+#### 我的理解
+
+```
+回文数：
+	1.回文数肯定不是负数。
+	2.将回文数转化为字符串，然后直接进行字符串操作就可以对比出来。
+```
+
+排除负数。直接将回文数转化为字符串，然后逐个判断字符串的每一位。
+
+#### 大佬的代码
+
+```java
+	public boolean isPalindrome(int x) {        
+        if(x < 0 ){
+            return false;
+        }
+        int original = x;
+        int revs = 0;
+        while(x != 0 ){
+            revs = revs * 10 + x % 10;
+            x = x / 10;
+        }
+        return original == revs;
+    }
+```
+
+#### 我对大佬代码的理解
+
+直接将回文数反转，然后互相比较。即可！
+
+
+
