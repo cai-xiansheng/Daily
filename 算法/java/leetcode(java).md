@@ -539,5 +539,92 @@ Integer.toString(): 返回表示 Integer 值的 String 对象。
 
 直接将回文数反转，然后互相比较。即可！
 
+---
 
+# 14.最长公共前缀
+
+#### 我的代码
+
+```java
+	public static String longestCommonPrefix(String[] strs) {
+	    if(strs.length == 0) 
+	    	return "";
+	    int lengths = strs[0].length();
+	    for (int p = 1;p < strs.length;p ++) {
+	    	if(lengths <= strs[p].length()) {
+	    		continue;
+	    	}else {
+	    		lengths = strs[p].length();
+	    	}
+	    }
+	    if(lengths == 0)
+	    	return "";
+		int i;
+	    StringBuilder s = new StringBuilder();
+	    s.append("");
+	    for (i = 0;i < lengths;i ++) {
+	    	char a = strs[0].charAt(i);
+	    	int j = 1;
+	    	while (j < strs.length) {
+	    		if( a == strs[j].charAt(i)) {
+	    			j ++;
+	    			continue;
+	    		}
+	    		else {
+	    			return s + "";
+	    		}
+	    	}
+	    	if (j == strs.length) {
+	    		s.append(a);
+	    	}
+	    }
+		return s + "";
+	}
+```
+
+#### 我的理解
+
+这个玩意怎么说呢？挺简单的，但是需要考虑的东西挺多的。首先判断这个字符串是不是为空，如果为空直接返回“”；然后再判断得到字符数组中字符串的最短长度，创建一个StringBuilder字符串，然后再进行循环，判断字符串相同位置的字符是不是相同，如果相同继续比较下一个，如果不同返回String字符串。（在把所有字符串循环完之后，如果还没有退出，那么就append当前字符。）
+
+```
+将StringBuilder转化为String:
+StringBuilder s = new StringBuilder();
+String t = s + "";(这就是一个字符串。)
+```
+
+#### 大佬的代码
+
+```java
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length==0){
+            return "";
+            //若字符串数组长度为0，直接返回“”；
+        }
+        String res=strs[0];
+        //把字符串数组的第一个元素给res
+        for(int i=1;i<strs.length;i++){
+            //从字符串数组的1——>strs.length-1循环
+            while(strs[i].indexOf(res)!=0){
+                // 判断这个res字符串在不在strs[i]中
+                res=res.substring(0,res.length()-1);
+                // 
+                if(res.length()==0){
+                    return "";
+                }
+            }
+        }
+        return res;
+    }
+```
+
+#### 我对大佬代码的理解
+
+```
+indexOf(String str): 返回指定字符在字符串中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。
+substring() 方法返回字符串的子字符串。
+```
+
+有点尴尬，我看不懂！
+
+---
 
