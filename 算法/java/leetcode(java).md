@@ -691,3 +691,64 @@ substring() 方法返回字符串的子字符串。
 
 这个题真挺难理解的。主要就是什么时刻覆盖之前处理的值。具体注释在代码中。
 
+---
+
+# 121.买股票的最佳时机
+
+#### 我的代码
+
+```java
+    public static int maxProfit(int[] prices) {
+    	if ( prices.length == 0 )
+    		return 0;
+        int min = prices[0];
+        int max = prices[0];
+        int ans = 0;
+        for (int i = 1; i < prices.length; i++) {
+        	if (prices[i] < min) {
+        		min = prices[i];
+        		max = prices[i];
+        	}else if(prices[i] > max){
+        		max =  prices[i];        		
+        	}
+        	ans = (ans > (max -min)? ans :(max -min));
+		}
+        return ans;
+    }
+```
+
+#### 我的理解
+
+这个问题与之前《买股票的最佳时机2》不一样，《 买股票的最佳时机2 》中没有限制买入卖出次数要求，只要能够得到最大利润即可（也就是可以使用贪婪原则）。
+
+当前问题：限制了买入卖出次数，所以需要找到最大利润区间（神仙视角）。我们可以将找出最低价和最高价，这样就可以拿到这个区间，但怎么控制最低价和最高价是个问题。
+
+晃荡了半天终于写出来了。先定义三个变量，min,max,ans。遍历数组的没一位，如果当前元素小于最小值，那么就更新当前min,max。如果大于最大值那么就更新max。最后判断当前得到的值（max-min）是不是最大的，如果是最大的就更新，不是则不更新。（我以为会测试出错呢。竟然没有！哈哈哈）。
+
+怎么说呢，它是对的，（debug一次就明白了！哈哈！（ 执行用时 :1 ms, 在所有 java 提交中击败了99.98%的用户 ））。
+
+#### 大佬的代码
+
+```java
+    public int maxProfit(int prices[]) {
+        int minprice = Integer.MAX_VALUE;
+        //最低价格
+        int maxprofit = 0;
+        //最大利益
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minprice)
+            //判读当前元素的价格是不是小于最低价格（如果是则更新）。
+                //最低价格就只有遇到最低价时更新。
+                minprice = prices[i];
+            else if (prices[i] - minprice > maxprofit)
+            //判断当前收益与原来利益的关系，若当前收益大于原来的收益，那么就更新。
+                maxprofit = prices[i] - minprice;
+        }
+        return maxprofit;
+    }
+```
+
+#### 我对大佬代码的理解
+
+这个比我的好理解多了，注释在代码中！
+
