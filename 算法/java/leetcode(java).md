@@ -752,3 +752,127 @@ substring() 方法返回字符串的子字符串。
 
 这个比我的好理解多了，注释在代码中！
 
+---
+
+# 67.二进制求和
+
+#### 我的代码
+
+```java
+    public static String addBinary(String a, String b) {
+        StringBuilder ans = new StringBuilder();
+        int aLength = a.length() - 1;
+        int bLength = b.length() - 1;
+        int n = Math.max(a.length(), b.length());
+        int p,q;
+        int flag = 0;
+        for (int i = 0;i< n;i++) {
+        	if(aLength >= 0) {
+        		p = (int)a.charAt(aLength) - 48;
+        		aLength --;
+        	}else {
+        		p = 0;
+        	}
+        	if(bLength >= 0) {
+        		q = (int)b.charAt(bLength) - 48;
+        		bLength --;
+        	}else {
+        		q = 0;
+        	}
+        	int sum = p + q;
+        	if(sum + flag == 2) {      
+        		ans.append(0);
+        		flag = 1;
+        	}else if(sum + flag == 3) {
+        		ans.append(1);
+        		flag = 1;
+        	}else if(sum + flag == 1){
+        		ans.append(1); 
+        		System.out.println(sum);
+        		flag = 0;
+        	}else if(sum + flag == 0) {
+        		ans.append(0);
+        		flag = 0;
+        	}
+        }
+        if(flag == 1)
+        	ans.append(1);
+        return ans.reverse() + "";
+    }
+```
+
+#### 我的理解
+
+经过修改终于通过了。 执行用时 :20 ms, 在所有 java 提交中击败了5.06%的用户 。 内存消耗 :35.9 MB, 在所有 java 提交中击败了55.84%的用户 。
+
+但是这个效率有点太低了呀！但是遇到的问题都很好！
+
+```
+从字符串中charAt的字符int强制转型后还是ASCLL码，所以在以后的使用中需要注意(int)charAt(i)的使用
+StringBuilder它的存储形式。
+强制转型后，p = (int)a.charAt(aLength) - 48;我们需要拿到准确的数字，不然会产生额外的错误。
+```
+
+我的理解它很简单，从后往前两个字符串相加，然后利用flag标志变量，保存进位的标志。（但是实现的时候太难！）。
+
+#### 大佬的代码
+
+```java
+    public String addBinary(String a, String b) {
+        int aLen = a.length();
+        int bLen = b.length();
+        //拿到字符串的长度
+        int length = aLen;
+        if (bLen > aLen) {
+            length = bLen;
+        }
+        //拿到最长字符串的长度
+        char[] aChars = a.toCharArray();
+        char[] bChars = b.toCharArray();
+		//将字符串转化成char型数组。
+        int j = aLen - 1;
+        int k = bLen - 1;
+		//循环条件判断的值。
+        char l = '0';//进位
+        char[] result = new char[length];
+        //创建了一个新的char数组
+        int m = length - 1;
+        while (j >= 0 || k >= 0) {
+			//保证字符串中的每个元素都能访问到。
+            char aVal = j >= 0 ? aChars[j--] : '0';
+            char bVal = k >= 0 ? bChars[k--] : '0';
+			//这儿牛逼，直接将我写了好多行的代码直接就两行解决了。
+            char val;
+            if ('1' == aVal && '1' == bVal) {
+                val = '0';
+                if ('1' == l) {
+                    val = '1';
+                } else {
+                    l = '1';
+                }
+            } else if ('0' == aVal && '0' == bVal) {
+                val = '0';
+                if ('1' == l) {
+                    val = '1';
+                }
+                l = '0';
+            } else {
+                val = '1';
+                if ('1' == l) {
+                    val = '0';
+                }
+            }
+            //上面的if—else处理的进位的问题。
+            result[m--] = val;
+            //进位的处理
+        }
+
+        if(l != '1') return new String(result);
+        else return "1" + new String(result);
+        //这儿处理了最后一位的进位
+    }
+```
+
+#### 我对大佬代码的理解
+
+这个呢，它优化了好多细节，大致处理过程与我的一样，但是处理方法特别好！详细注释在代码中！
