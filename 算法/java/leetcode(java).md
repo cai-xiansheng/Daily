@@ -876,3 +876,62 @@ StringBuilder它的存储形式。
 #### 我对大佬代码的理解
 
 这个呢，它优化了好多细节，大致处理过程与我的一样，但是处理方法特别好！详细注释在代码中！
+
+---
+
+# 88.合并两个有序数组
+
+#### 我的代码
+
+```java
+    public static void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m;
+        int j = n + m;
+        int flag = 0;
+        while (i < j) {
+			nums1[i] = nums2[flag];
+			i ++;
+			flag ++;
+		}
+        Arrays.sort(nums1);
+    }
+```
+
+#### 我的理解
+
+这个问题比较简单（相当简单），题目中已经把我们要用到的数据全部提供了，只需要先赋值，然后直接sort排序即可。但是实际算法确实有点慢！
+
+#### 大佬的代码
+
+```java
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (n == 0) return;
+        //判断第二个字符串的长度，若为0，直接退出。
+        int cur_index = 0, index2 = 0, index = 0;
+        int[] nums = new int[m];
+        //创建了一个新的数组
+        for (int i = 0; i < m; i++) {
+            nums[i] = nums1[i];
+            //把num1中有效的值全部放入新数组nums中。
+        }
+        while (index < m && index2 < n) {
+            //下面的就是给排序（相当于用nums&nums2给nums1中重新输入）。
+            if (nums[index] <= nums2[index2]) {
+                nums1[cur_index++] = nums[index++];
+            } else {
+                nums1[cur_index++] = nums2[index2++];
+            }
+        }
+        //排序结束后如果数组还没有循环完，那就直接将这个数组中剩余的元素全部送入nums中。但是下面的这两中情况只能出现一次。
+        while (index < m) {
+            nums1[cur_index++] = nums[index++];
+        }
+        while (index2 < n) {
+            nums1[cur_index++] = nums2[index2++];
+        }
+    }
+```
+
+#### 我对大佬代码的理解
+
+它这个理解起来还是挺难的，理解了还是挺难的。我那个中用了sort，但是sort是冒泡排序，所以需要很长时间。虽然时间长，但是使用方便，在大量数据的时候还是得择优排序！！！
