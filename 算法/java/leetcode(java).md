@@ -995,3 +995,72 @@ StringBuilder它的存储形式。
 真看不懂，他应该是将动态规划用的最简单的那一种！看完动态规划之后再更新！
 
 昨天看了动态规划，今天再看了看差不多明白了。已经更新了注释！
+
+---
+
+# 263.丑数
+
+#### 我的代码
+
+```java
+    public static boolean isUgly(int num) {
+        if(num == 1) {
+        	return true;
+        }else if(num == 0) {
+        	return true;
+        }
+        //排除两个特征值的问题（1和0）
+        while(num != 1) {
+            //只要num的值不为1，那么就直接循环，因为只要正常循环，那个答案num最终会编程1.
+        	if(num % 2 == 0) {
+                //num取余2是不是0.
+        		num /= 2;
+        		continue;
+        	}else if(num % 3 == 0) {
+                //num取余3是不是0.
+        		num /= 3;
+        		continue;
+        	}else if(num % 5 == 0) {
+                //num取余5是不是0.
+        		num /= 5;
+                //num除去相应值得结果。
+        		continue;
+        	}else {
+        		return false;
+        	}
+        }
+        return true;
+    }
+```
+
+#### 我的理解
+
+这个就是直接将num处理，判断最终结果是不是可以整除2、3、5。难得就是这个循环过程，我把这个循环过程没有想明白！
+
+#### 大佬的代码
+
+```java
+    public boolean isUgly(int num) {
+        if(num<=0){
+            return false;
+        }
+        //排除num是0的问题。
+        //判断是否只包含这三种因子
+        while((num&1)==0){
+            num>>=1;
+        }
+        //利用>>来解决除以2的问题
+        while(num%3==0){
+            num/=3;
+        }//判断3||5的问题
+        while(num%5==0){
+            num/=5;
+        }
+        return num==1;
+        //判断num == 1的情况。
+    }
+```
+
+#### 我对大佬代码的理解
+
+这个就是将他们分类处理，但是这个我还是不太理解。感觉还是我之前写的简单！
