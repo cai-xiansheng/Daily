@@ -1136,3 +1136,56 @@ StringBuilder它的存储形式。
 可以这么做的原因：原本可以被完美分成9个为一份的n样物品，我故意去掉一个，那么就又可以回到上述逻辑中去得到我要的n被打包成10个一份的份数+打不进10个一份的散落个数的和。而这个减去的1就相当于从，在10个1份打包的时候散落的个数中借走的，本来就不影响原来10个1份打包的份数，先拿走再放回来，都只影响散落的个数，所以没有关系。
 ```
 
+---
+
+# 70.爬楼梯
+
+#### 我的代码
+
+```java
+    public static int climbStairs(int n) {
+        int pre = 1;
+        int last = 2;
+        if (n == 0) {
+        	return 0;
+        }else if(n == 1) {
+        	return 1;
+        }
+        int i = 3;
+        while (i <= n) {
+        	int tmp = last;
+        	last = pre + last;
+        	pre = tmp;
+        	i ++;
+        }
+        return last;
+    }
+```
+
+#### 我的理解
+
+每增加一层台阶，方案数是斐波那契数列，所以直接使用动态规划处理，不适用递归的方法！
+
+#### 大佬的代码
+
+```java
+    public int climbStairs(int n) {
+        if(n == 0 || n == 1){
+            return 1;
+        }
+        int preOneStep = 1;
+        int preTwoStep = 1;
+        int result = 0;
+        for(int i = 2; i <= n ;i++){
+            result = preTwoStep + preOneStep;
+            preOneStep = preTwoStep;
+            preTwoStep = result;
+            //动态规划的步骤
+        }
+        return result;
+    }
+```
+
+#### 我对大佬代码的理解
+
+方法还是一样的，找到发展的规律，然后使用动态规划。
