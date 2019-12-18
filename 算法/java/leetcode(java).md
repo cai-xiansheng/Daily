@@ -1189,3 +1189,41 @@ StringBuilder它的存储形式。
 #### 我对大佬代码的理解
 
 方法还是一样的，找到发展的规律，然后使用动态规划。
+
+---
+
+# 268.缺少数字
+
+#### 我的代码
+
+```java
+    public static int missingNumber(int[] nums) {
+    	Arrays.sort(nums);
+    	int i;
+    	for (i = 0; i < nums.length; i++) {
+			if(nums[i] != i)
+				return i;
+		}
+    	return i;
+    }
+```
+
+#### 我的理解
+
+直接sort，再进行排序，然后与下标对比就行了。但是sort花费的时间太多。
+
+#### 大佬的代码
+
+```java
+    public int missingNumber(int[] nums) {
+       int sum = 0;
+       for(int num:nums) sum+=num;
+       int N = nums.length;
+       int expactSum = (1+N)*N/2;
+       return expactSum - sum;
+    }
+```
+
+#### 我对大佬代码的理解
+
+把下标与值分别求和，然后相减即可求出答案！
